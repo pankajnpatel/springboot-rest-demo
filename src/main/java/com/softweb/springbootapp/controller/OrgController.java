@@ -17,31 +17,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.softweb.springbootapp.dto.Product;
+import com.softweb.springbootapp.dto.Organization;
 import com.softweb.springbootapp.dto.PagedResult;
+import com.softweb.springbootapp.dto.Product;
 
 @RestController
-@Api(value = "onlinestore", description = "Operations pertaining to products in Online Store", tags = {"2"})
-public class ProductController {
+@Api(value = "onlinestore", description = "Operations to get information about Organization", tags = {"1"})
+public class OrgController {
 
 	@Autowired
 	private Environment env;
 
-	@ApiOperation(value = "View a list of available products", response = Iterable.class)
+	@ApiOperation(value = "View roganization details", response = PagedResult.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully retrieved list", response = Product.class),
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	
-	@RequestMapping(value = "/product/{id}/", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public PagedResult<Product> getMessage(
+	@RequestMapping(value = "/org/{id}/", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public PagedResult<Organization> getMessage(
 			@PathVariable(name = "id") String id,
 			@RequestParam(name = "name") String name) {
 
-		List<Product> employees = new ArrayList<Product>();
-		employees.add(new Product(env.getProperty("app.user.name"), "9510583381"));
-		return new PagedResult<Product>(employees, employees.size(), 0, 10);
+		List<Organization> employees = new ArrayList<Organization>();
+		employees.add(new Organization(env.getProperty("app.user.name"), "9510583381"));
+		return new PagedResult<Organization>(employees, employees.size(), 0, 10);
 		
 	}
 }
