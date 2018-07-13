@@ -1,0 +1,8 @@
+server:
+  servlet:
+    path: /product
+app:
+  user:
+    name: Pankaj From Dev
+  data:
+    name: Pankaj

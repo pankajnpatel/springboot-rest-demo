@@ -1,0 +1,11 @@
+server:
+  servlet:
+    path: /product
+app:
+  user:
+    name: Pankaj
+  data:
+    name: Pankaj
+spring:
+  profiles:
+    active: qa
